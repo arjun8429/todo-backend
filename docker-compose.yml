@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  db:
+    build: .
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://admin:password@db:5432/todos
+    depends_on:
+      - db
